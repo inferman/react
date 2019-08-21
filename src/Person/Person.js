@@ -1,11 +1,12 @@
 import React from "react";
+import "./Person.css";
 
 const date = _ => new Date().getFullYear();
 const age = year => date() - +year;
 
 const person = props => {
   return (
-    <div>
+    <div className="Person">
       <p>
         Some Person, name is {props.name} and spec is {props.spec}
       </p>

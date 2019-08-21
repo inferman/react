@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
 
+const classList = [];
+
 class App extends Component {
   state = {
     persons: [
@@ -31,9 +33,27 @@ class App extends Component {
       ]
     });
   };
+
+  setClassList = () => {
+    switch (this.state.persons.length) {
+      case 3:
+        classList.push("App", "red", "bold");
+        return classList.join(" ");
+      case 2:
+        classList.push("App", "red", "bold", "bg-grey");
+        return classList.join(" ");
+      case 1:
+        classList.push("App", "bg-grey");
+        return classList.join(" ");
+      default:
+        classList.push("App", "red", "bg-grey");
+        return classList.join(" ");
+    }
+  };
+
   render() {
     return (
-      <div className="App">
+      <div className={this.setClassList()}>
         <h1 className="testing classnames">test headline</h1>
         <p>first component</p>
         <button
