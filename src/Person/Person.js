@@ -14,6 +14,7 @@ const person = props => {
       <button type="button" onClick={props.click}>
         Action
       </button>
+      <input type="text" onChange={props.changedArrr} value={props.spec} />
     </div>
   );
 };

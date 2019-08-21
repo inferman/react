@@ -21,6 +21,16 @@ class App extends Component {
     });
     this.state.persons[2].name = "Some name";
   };
+
+  specChangeHandler = event => {
+    this.setState({
+      persons: [
+        { name: "Neo", spec: "choosen one" },
+        { name: "Morfius", spec: "recruiter", yearOfB: "1964" },
+        { name: "Trinity", spec: event.target.value }
+      ]
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -45,6 +55,7 @@ class App extends Component {
           name={this.state.persons[2].name}
           spec={this.state.persons[2].spec}
           nums="1983"
+          changedArrr={this.specChangeHandler}
         />
       </div>
     );
