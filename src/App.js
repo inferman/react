@@ -58,6 +58,29 @@ class App extends Component {
   };
 
   render() {
+    let persons = null;
+
+    if (this.state.isListVisible) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[1].name}
+            spec={this.state.persons[1].spec}
+            nums={this.state.persons[1].yearOfB}
+            click={this.switchNameHandler.bind(this, "killer")}
+          />
+          <Person name="Neo" spec="choosen one" nums="1971">
+            Some inner text
+          </Person>
+          <Person
+            name={this.state.persons[2].name}
+            spec={this.state.persons[2].spec}
+            nums="1983"
+            changedArrr={this.specChangeHandler}
+          />
+        </div>
+      );
+    }
     return (
       <div className={this.setClassList()}>
         <h1 className="testing classnames">test headline</h1>
@@ -70,25 +93,7 @@ class App extends Component {
         </button>
         <button onClick={this.togglePersonsList}>Toggle persons list</button>
 
-        {this.state.isListVisible ? (
-          <div>
-            <Person
-              name={this.state.persons[1].name}
-              spec={this.state.persons[1].spec}
-              nums={this.state.persons[1].yearOfB}
-              click={this.switchNameHandler.bind(this, "killer")}
-            />
-            <Person name="Neo" spec="choosen one" nums="1971">
-              Some inner text
-            </Person>
-            <Person
-              name={this.state.persons[2].name}
-              spec={this.state.persons[2].spec}
-              nums="1983"
-              changedArrr={this.specChangeHandler}
-            />
-          </div>
-        ) : null}
+        {persons}
       </div>
     );
   }
