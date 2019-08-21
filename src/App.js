@@ -10,7 +10,8 @@ class App extends Component {
       { name: "Neo", spec: "choosen one" },
       { name: "Morfius", spec: "recruiter", yearOfB: "1964" },
       { name: "Trinity", spec: "white rabbit" }
-    ]
+    ],
+    isListVisible: true
   };
   switchNameHandler = newProp => {
     //console.log(event);
@@ -32,6 +33,11 @@ class App extends Component {
         { name: "Trinity", spec: event.target.value }
       ]
     });
+  };
+
+  togglePersonsList = () => {
+    const visibility = this.state.isListVisible;
+    this.setState({ isListVisible: !visibility });
   };
 
   setClassList = () => {
@@ -62,21 +68,27 @@ class App extends Component {
         >
           Switch Name
         </button>
-        <Person
-          name={this.state.persons[1].name}
-          spec={this.state.persons[1].spec}
-          nums={this.state.persons[1].yearOfB}
-          click={this.switchNameHandler.bind(this, "killer")}
-        />
-        <Person name="Neo" spec="choosen one" nums="1971">
-          Some inner text
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          spec={this.state.persons[2].spec}
-          nums="1983"
-          changedArrr={this.specChangeHandler}
-        />
+        <button onClick={this.togglePersonsList}>Toggle persons list</button>
+
+        {this.state.isListVisible ? (
+          <div>
+            <Person
+              name={this.state.persons[1].name}
+              spec={this.state.persons[1].spec}
+              nums={this.state.persons[1].yearOfB}
+              click={this.switchNameHandler.bind(this, "killer")}
+            />
+            <Person name="Neo" spec="choosen one" nums="1971">
+              Some inner text
+            </Person>
+            <Person
+              name={this.state.persons[2].name}
+              spec={this.state.persons[2].spec}
+              nums="1983"
+              changedArrr={this.specChangeHandler}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }
