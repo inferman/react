@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "./Person/Person";
+import Person from "../components/Persons/Person/Person";
 
 const classList = [];
 
@@ -17,16 +17,6 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons.forEach(person => (person.spec = newProp));
     this.setState({ persons });
-  };
-
-  specChangeHandler = event => {
-    this.setState({
-      persons: [
-        { name: "Neo", spec: "choosen one" },
-        { name: "Morfius", spec: "recruiter", yearOfB: "1964" },
-        { name: "Trinity", spec: event.target.value }
-      ]
-    });
   };
 
   togglePersonsList = () => {
