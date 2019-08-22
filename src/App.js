@@ -7,22 +7,16 @@ const classList = [];
 class App extends Component {
   state = {
     persons: [
-      { name: "Neo", spec: "choosen one" },
-      { name: "Morfius", spec: "recruiter", yearOfB: "1964" },
-      { name: "Trinity", spec: "white rabbit" }
+      { id: "wqer", name: "Neo", spec: "choosen one", yearOfB: "1964" },
+      { id: "asdf", name: "Morfius", spec: "recruiter", yearOfB: "1971" },
+      { id: "zxcv", name: "Trinity", spec: "white rabbit", yearOfB: "1983" }
     ],
     isListVisible: true
   };
   switchNameHandler = newProp => {
-    //console.log(event);
-    this.setState({
-      persons: [
-        { name: "Neo", spec: "choosen one" },
-        { name: "Morfius", spec: "recruiter", yearOfB: "1964" },
-        { name: "Trinity", spec: newProp }
-      ]
-    });
-    this.state.persons[2].name = "Some name";
+    const persons = [...this.state.persons];
+    persons.forEach(person => (person.spec = newProp));
+    this.setState({ persons });
   };
 
   specChangeHandler = event => {
@@ -57,27 +51,38 @@ class App extends Component {
     }
   };
 
+  onNameChange = (e, id) => {
+    const person = this.state.persons.find(item => item.id === id);
+    const i = this.state.persons.indexOf(person);
+    const persons = [...this.state.persons];
+    persons[i] = person;
+    this.setState({ persons });
+  };
+
+  deletePersonHandler = id => {
+    const persons = this.state.persons.filter(item => item.id !== id);
+    this.setState({ persons });
+    console.log(this.state.persons);
+  };
+
   render() {
     let persons = null;
 
     if (this.state.isListVisible) {
       persons = (
         <div>
-          <Person
-            name={this.state.persons[1].name}
-            spec={this.state.persons[1].spec}
-            nums={this.state.persons[1].yearOfB}
-            click={this.switchNameHandler.bind(this, "killer")}
-          />
-          <Person name="Neo" spec="choosen one" nums="1971">
-            Some inner text
-          </Person>
-          <Person
-            name={this.state.persons[2].name}
-            spec={this.state.persons[2].spec}
-            nums="1983"
-            changedArrr={this.specChangeHandler}
-          />
+          {this.state.persons.map(person => {
+            return (
+              <Person
+                click={() => this.deletePersonHandler(person.id)}
+                name={person.name}
+                spec={person.spec}
+                nums={person.yearOfB}
+                changed={event => this.onNameChange(event, person.id)}
+                key={person.id}
+              />
+            );
+          })}
         </div>
       );
     }
