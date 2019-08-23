@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "../components/Persons/Person/Person";
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 const classList = [];
 
@@ -41,9 +42,9 @@ class App extends Component {
     }
   };
 
-  onNameChange = (e, id) => {
+  onNameChange = (event, id, i) => {
     const person = this.state.persons.find(item => item.id === id);
-    const i = this.state.persons.indexOf(person);
+    person.spec = event.target.value;
     const persons = [...this.state.persons];
     persons[i] = person;
     this.setState({ persons });
@@ -52,7 +53,6 @@ class App extends Component {
   deletePersonHandler = id => {
     const persons = this.state.persons.filter(item => item.id !== id);
     this.setState({ persons });
-    console.log(this.state.persons);
   };
 
   render() {
@@ -60,34 +60,19 @@ class App extends Component {
 
     if (this.state.isListVisible) {
       persons = (
-        <div>
-          {this.state.persons.map(person => {
-            return (
-              <Person
-                click={() => this.deletePersonHandler(person.id)}
-                name={person.name}
-                spec={person.spec}
-                nums={person.yearOfB}
-                changed={event => this.onNameChange(event, person.id)}
-                key={person.id}
-              />
-            );
-          })}
-        </div>
+        <Persons
+          click={this.deletePersonHandler}
+          persons={this.state.persons}
+          changes={this.onNameChange}
+        />
       );
     }
     return (
       <div className={this.setClassList()}>
-        <h1 className="testing classnames">test headline</h1>
-        <p>first component</p>
-        <button
-          type="button"
-          onClick={() => this.switchNameHandler("totally new property")}
-        >
-          Switch Name
-        </button>
-        <button onClick={this.togglePersonsList}>Toggle persons list</button>
-
+        <Cockpit
+          nameChange={() => this.switchNameHandler("totally new property")}
+          togglePersons={this.togglePersonsList}
+        />
         {persons}
       </div>
     );

@@ -12,7 +12,7 @@ const person = props => {
       </p>
       <div>{age(props.nums)}</div>
       <p>{props.children}</p>
-      <button type="button" onClick={props.click}>
+      <button type="button" onClick={props.clicked}>
         Action
       </button>
       <input type="text" onChange={props.changed} value={props.spec} />
