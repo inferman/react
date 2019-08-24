@@ -1,23 +1,25 @@
-import React from "react";
+import React, {Component} from "react";
 import "./Person.css";
 
 const date = _ => new Date().getFullYear();
 const age = year => date() - +year;
 
-const person = props => {
-  return (
-    <div className="Person">
+class Person extends Component {
+  render() {
+    return (
+      <div className="Person">
       <p>
-        Some Person, name is {props.name} and spec is {props.spec}
+        Some Person, name is {this.props.name} and spec is {this.props.spec}
       </p>
-      <div>{age(props.nums)}</div>
-      <p>{props.children}</p>
-      <button type="button" onClick={props.clicked}>
+      <div>{age(this.props.nums)}</div>
+      <p>{this.props.children}</p>
+      <button type="button" onClick={this.props.clicked}>
         Action
       </button>
-      <input type="text" onChange={props.changed} value={props.spec} />
+      <input type="text" onChange={this.props.changed} value={this.props.spec} />
     </div>
-  );
-};
+    )
+  }
+}
 
-export default person;
+export default Person;
