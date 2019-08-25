@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Cockpit from "../components/Cockpit/Cockpit";
 import Persons from "../components/Persons/Persons";
+import Sample from "../components/Sample/Sample";
 
 const classList = [];
 
@@ -92,6 +93,7 @@ class App extends Component {
           personsLength={this.state.persons.length}
         /> : null}
         {persons}
+        <Sample />
       </div>
     );
   }
