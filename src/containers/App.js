@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import Persons from "../components/Persons/Persons";
 
 const classList = [];
 
@@ -89,7 +89,7 @@ class App extends Component {
         {this.state.showCockpit ? <Cockpit
           nameChange={() => this.switchNameHandler("totally new property")}
           togglePersons={this.togglePersonsList}
-          persons={this.state.persons}
+          personsLength={this.state.persons.length}
         /> : null}
         {persons}
       </div>

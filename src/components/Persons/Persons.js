@@ -4,7 +4,7 @@ import Person from "./Person/Person";
 class Persons extends Component {
   // constructor() {super()}
   shouldComponentUpdate(nextProp, nextState) {
-    console.log('[Persons.js], shouldComponentUpdate', nextProp.persons === this.props.persons)
+    console.log('[Persons.js], shouldComponentUpdate', nextProp.persons !== this.props.persons)
     return nextProp.persons !== this.props.persons;
   }
 

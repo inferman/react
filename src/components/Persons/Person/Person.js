@@ -6,6 +6,7 @@ const age = year => date() - +year;
 
 class Person extends Component {
   render() {
+    console.log('[Person!!!!!!!!.js], render')
     return (
       <div className="Person">
       <p>

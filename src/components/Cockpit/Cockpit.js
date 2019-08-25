@@ -6,12 +6,12 @@ const cockpit = props => {
   useEffect(() => () => console.log("[Cockpit.js], useEffect cleanup"), []);
 
   // Each time when persons get update
-  useEffect(() => {
-    console.log("[Cockpit.js], useEffect #2");
-    // setTimeout(()=>{
-    //   alert('useEffect in action');
-    // }, 1000);
-  }, [props.persons]);
+  // useEffect(() => {
+  //   console.log("[Cockpit.js], useEffect #2");
+  //   // setTimeout(()=>{
+  //   //   alert('useEffect in action');
+  //   // }, 1000);
+  // }, [props.personsLength]);
 
   return (
     <div className="Cockpit">
@@ -25,4 +25,6 @@ const cockpit = props => {
   );
 };
 
+// export default React.memo(cockpit);
 export default cockpit;
+
