@@ -2,20 +2,16 @@ import React, {useEffect} from "react";
 
 const cockpit = props => {
   
+  //Only once before destroy
+  useEffect(() => () => console.log("[Cockpit.js], useEffect cleanup"), []);
+
+  // Each time when persons get update
   useEffect(() => {
-    console.log("[Cockpit.js], useEffect");
-    console.log(props);
-    return () => { console.log("[Cockpit.js], useEffect cleanup"); }
-
-  }, []);
-
-  // useEffect(() => {
-  //   console.log("[Cockpit.js], useEffect");
-  //   console.log(props);
-  //   setTimeout(()=>{
-  //     alert('useEffect in action');
-  //   }, 1000);
-  // }, [props.persons]);
+    console.log("[Cockpit.js], useEffect #2");
+    // setTimeout(()=>{
+    //   alert('useEffect in action');
+    // }, 1000);
+  }, [props.persons]);
 
   return (
     <div className="Cockpit">
