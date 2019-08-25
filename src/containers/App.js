@@ -6,14 +6,26 @@ import Cockpit from "../components/Cockpit/Cockpit";
 const classList = [];
 
 class App extends Component {
+  constructor() {
+    super();
+    console.log("[App.js], constructor")
+  }
+
   state = {
     persons: [
       { id: "wqer", name: "Neo", spec: "choosen one", yearOfB: "1964" },
       { id: "asdf", name: "Morfius", spec: "recruiter", yearOfB: "1971" },
       { id: "zxcv", name: "Trinity", spec: "white rabbit", yearOfB: "1983" }
     ],
-    isListVisible: true
+    isListVisible: true,
+    showCockpit: true
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js], getDerivedStateFromProps", props);
+    return state
+  }
+
   switchNameHandler = newProp => {
     const persons = [...this.state.persons];
     persons.forEach(person => (person.spec = newProp));
@@ -56,6 +68,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js], render");
     let persons = null;
 
     if (this.state.isListVisible) {
@@ -69,10 +82,15 @@ class App extends Component {
     }
     return (
       <div className={this.setClassList()}>
-        <Cockpit
+        <button type="button" onClick={() => {
+          this.setState({showCockpit: false})
+          }
+        }>Toggle Cockpit</button>
+        {this.state.showCockpit ? <Cockpit
           nameChange={() => this.switchNameHandler("totally new property")}
           togglePersons={this.togglePersonsList}
-        />
+          persons={this.state.persons}
+        /> : null}
         {persons}
       </div>
     );
